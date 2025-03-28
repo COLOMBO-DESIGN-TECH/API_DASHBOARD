@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Reports</title>
+    <link rel="stylesheet" href="reports.css">
+    <script defer src="reports.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>Admin User</h3><br>
+            <ul>
+                <li id="dashboardLink"><a href="dashboard.html">🏠 Dashboard</a></li>
+                <li id="testlogsLink"><a href="testlogs.html">📄 Test Logs</a></li>
+                <li id="reportsLink"><a href="reports.html">📊 Reports</a></li>
+                <li id="settingsLink"><a href="settings.html">⚙️ Settings</a></li>
+            </ul>
+        </div>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h3>Test Reports</h3>
+                <div class="export-buttons">
+                    <button class="export-btn">
+                        <img src="csv-icon.svg" alt="CSV Icon" class="icon"> CSV
+                    </button>
+                    <button class="export-btn">
+                        <img src="json-icon.svg" alt="JSON Icon" class="icon"> JSON
+                    </button>
+                    <button class="export-btn">
+                        <img src="pdf-icon.svg" alt="PDF Icon" class="icon"> PDF
+                    </button>
+                </div>
+
+            </header>
+
+            <!-- Filter Section (Updated UI) -->
+            <div class="filters-container">
+                <input type="text" id="searchBox" placeholder="🔍 Search by Test ID, Date, or Status">
+                <div class="filter-dropdowns">
+                    <select id="dateRange">
+                        <option value="">Date Range</option>
+                    </select>
+                    <select id="reportType">
+                        <option value="">Report Type</option>
+                    </select>
+                    <select id="complianceStatus">
+                        <option value="">Compliance Status</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <button class="apply-filters">⬇ Generate Report</button><br><br>
+
+            <!-- Report Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Report Name</th>
+                        <th>Date Generated</th>
+                        <th>Test ID</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Test #1234 Compliance Report</td>
+                        <td>Jan 15, 2025</td>
+                        <td>#TEST-1234</td>
+                        <td><span class="status-passed">Passed</span></td>
+                        <td>⬇</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Automated Report Scheduling Section -->
+            <div class="automated-scheduling">
+                <h4>Automated Report Scheduling</h4><br>
+                <div class="schedule-container">
+                    <div class="dropdown-wrapper">
+                        <select id="scheduleFrequency">
+                            <option value="daily">Daily</option>
+                        </select>
+                    </div>
+                    <div class="schedule-info">
+                        <p>Next scheduled report: Jan 16, 2025 09:00 AM</p>
+                        <p>Last generated: Jan 15, 2025 09:00 AM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                <button class="pagination-btn prev">Previous</button>
+                <div class="pagination-numbers">
+                    <button class="page-number active">1</button>
+                    <button class="page-number">2</button>
+                    <button class="page-number">3</button>
+                </div>
+                <button class="pagination-btn next">Next</button>
+            </div>
+        </main>
+
+
+        <!-- Report Details Section -->
+        <div class="report-details">
+            <h4>Report Details</h4>
+            <h5>Test Summary </h5><br>
+
+            <!-- Test Summary -->
+            <div class="test-summary">
+                <div class="summary-box">
+                    <p>Pressure</p>
+                    <strong>2500 PSI</strong>
+                </div>
+                <div class="summary-box">
+                    <p>Temperature</p>
+                    <strong>75°F</strong>
+                </div>
+                <div class="summary-box full-width">
+                    <p>Duration</p>
+                    <strong>2h 30m</strong>
+                </div>
+            </div>
+
+            <!-- Compliance Results -->
+            <br>
+            <h4>Compliance Results</h4>
+            <div class="compliance-box">
+                <p>API 7K <span class="checkmark">✔</span></p><br>
+                <p>API 16C <span class="checkmark">✔</span></p>
+            </div>
+
+            <!-- Data Trends -->
+            <br>
+            <h4>Data Trends</h4>
+            <div class="data-trends">
+                <p>Graph Visualization</p>
+            </div>
+
+            <!-- Buttons -->
+            <div class="report-actions">
+                <button class="download-btn1">⬇ Download</button>
+                <button class="share-btn1">↪ Share</button>
+            </div>
+        </div>
+
+
+        <!-- Popup Modal -->
+        <div id="reportModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3>Generate Test Report</h3><br>
+
+                <label for="reportType">Report Type</label>
+                <select id="reportType">
+                    <option value="api7k">Compliance Report (API 7K / API 16C)</option>
+                </select>
+
+                <label for="dateRange">Data Range</label>
+                <select id="dateRange">
+                    <option value="24h">Last 24 Hours</option>
+                    <option value="7d">Last 7 Days</option>
+                    <option value="30d">Last 30 Days</option>
+                </select>
+
+
+
+                <div class="date-inputs">
+                    <div>
+                        <br><label for="startDate">Start Date</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div>
+                        <br><label for="endDate">End Date</label>
+                        <input type="date" id="endDate">
+                    </div>
+                </div>
+
+                <div class="data-inclusion">
+                    <br><label>Data Inclusion :</label><br>
+                    <label>
+                        <input type="checkbox" id="pressure"> Pressure & Temperature Trends (Graph)
+                    </label>
+                    <label>
+                        <input type="checkbox" id="failures"> Test Logs & Failures
+                    </label>
+                    <label>
+                        <input type="checkbox" id="compliance"> Compliance Status
+                    </label>
+                    <label>
+                        <input type="checkbox" id="events"> System Events (Alerts & Notifications)
+                    </label>
+                </div>
+
+
+
+                <div class="output-format">
+                    <br><label>Output Format :</label><br>
+                    <label>
+                        <input type="radio" name="format" value="pdf">
+                        📄 PDF
+                    </label>
+                    <label>
+                        <input type="radio" name="format" value="csv">
+                        📜 CSV
+                    </label>
+                    <label>
+                        <input type="radio" name="format" value="json">
+                        🗂 JSON
+                    </label><br>
+                </div>
+
+
+                <label>Schedule Report Generation</label>
+                <select id="scheduleReport">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                </select>
+
+                <div class="buttons">
+                    <button class="cancel-btn">Cancel</button>
+                    <button class="generate-btn">Generate Report</button>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelector(".generate-report").addEventListener("click", function () {
+                    alert("Generating report...");
+                });
+
+                document.querySelector(".download-btn").addEventListener("click", function () {
+                    alert("Downloading report...");
+                });
+
+                document.querySelector(".share-btn").addEventListener("click", function () {
+                    alert("Sharing report...");
+                });
+            });
+
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get current page filename
+                let currentPage = window.location.pathname.split("/").pop();
+
+                // Map filenames to their sidebar link IDs
+                let pageMap = {
+                    "dashboard.html": "dashboardLink",
+                    "testlogs.html": "testlogsLink",
+                    "reports.html": "reportsLink",
+                    "settings.html": "settingsLink"
+                };
+
+                // Remove active class from all links
+                document.querySelectorAll(".sidebar ul li").forEach(li => li.classList.remove("active"));
+
+                // Add active class to the correct menu item
+                if (pageMap[currentPage]) {
+                    document.getElementById(pageMap[currentPage]).classList.add("active");
+                }
+            });
+
+
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const modal = document.getElementById("reportModal");
+                const openBtn = document.querySelector(".apply-filters");
+                const closeBtn = document.querySelector(".close-btn");
+                const cancelBtn = document.querySelector(".cancel-btn");
+
+                // Open Modal on Button Click
+                openBtn.addEventListener("click", function () {
+                    modal.style.display = "flex";
+                });
+
+                // Close Modal on Close Button Click
+                closeBtn.addEventListener("click", function () {
+                    modal.style.display = "none";
+                });
+
+                // Close Modal on Cancel Button Click
+                cancelBtn.addEventListener("click", function () {
+                    modal.style.display = "none";
+                });
+
+                // Close Modal on Clicking Outside
+                window.addEventListener("click", function (e) {
+                    if (e.target === modal) {
+                        modal.style.display = "none";
+                    }
+                });
+            });
+
+
+
+
+
+
+
+        </script>
+
+</body>
+
+</html>

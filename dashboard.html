@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Equipment Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3>Admin User</h3><br>
+        <ul>
+            <li id="dashboardLink"><a href="dashboard.html">🏠 Dashboard</a></li>
+            <li id="testlogsLink"><a href="testlogs.html">📄 Test Logs</a></li>
+            <li id="reportsLink"><a href="reports.html">📊 Reports</a></li>
+            <li id="settingsLink"><a href="settings.html">⚙️ Settings</a></li>
+        </ul>
+    </div>
+
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h3>API Test Equipment Dashboard</h3>
+            <button id="exportData">⬇ Export Data ▼</button>
+        </header>
+
+
+        <!-- Status Cards -->
+        <div class="stats">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Test Status</h4>
+                    <span class="info-icon">
+                        <img src="info-icon.svg" alt="Info" width="20px">
+                    </span>
+                </div>
+                <p class="status">● <strong>Running</strong></p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Pressure</h4>
+                    <span class="info-icon">
+                        <img src="info-icon.svg" alt="Info" width="20px">
+                    </span>
+                </div>
+                <p id="pressure"><strong>2.4 MPa</strong></p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Temperature</h4>
+                    <span class="info-icon">
+                        <img src="info-icon.svg" alt="Info" width="20px">
+                    </span>
+                </div>
+                <p id="temperature"><strong>24.5°C</strong></p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Compliance</h4>
+                    <span class="info-icon">
+                        <img src="info-icon.svg" alt="Info" width="20px">
+                    </span>
+                </div>
+                <p><strong>98%</strong></p>
+            </div>
+        </div>
+
+
+
+        <!-- Metrics & Live Feed -->
+        <div class="dashboard-content">
+            <div class="metrics">
+                <h3>Real-Time Metrics</h3>
+                <canvas id="metricsChart"></canvas>
+            </div>
+
+            <div class="camera-feed">
+                <h3>Live Feed</h3>
+                <div class="feed-box">📷 Camera Feed</div>
+            </div>
+        </div>
+
+        <!-- Alerts & Logs -->
+        <div class="alerts-logs">
+            <div class="alerts">
+                <h4>Active Alerts</h4><br>
+                <div class="alert-box">
+                    ⚠ <strong>High Pressure Warning</strong>
+                    <br><span>Issued 5 minutes ago</span>
+                </div>
+                <div class="alert-box">
+                    ⚠ <strong>Temperature Threshold Breach</strong>
+                    <br><span>Issued 12 minutes ago</span>
+                </div>
+            </div>
+
+            <div class="logs">
+                <h4>Recent Test Logs</h4><br>
+                <div class="log-box">
+                    <strong>Test #1234 - Completed</strong>
+                    <br><span>2025-01-15 14:30:00</span>
+                </div>
+                <div class="log-box">
+                    <strong>Test #1233 - Failed</strong>
+                    <br><span>2025-01-15 13:45:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compliance Status -->
+        <footer>
+            <p>API 7K / API 16C Compliant</p>
+            <div class="export-options">
+                <button>CSV</button>
+                <button>JSON</button>
+                <button>PDF</button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById("exportData").addEventListener("click", function () {
+            alert("Data exported successfully!");
+        });
+
+        // Simulating live updates for Pressure and Temperature
+        function updateLiveData() {
+            let pressureElement = document.getElementById("pressure");
+            let temperatureElement = document.getElementById("temperature");
+
+            let newPressure = (2.0 + Math.random() * 0.5).toFixed(2);
+            let newTemperature = (24 + Math.random() * 2).toFixed(1);
+
+            pressureElement.textContent = `${newPressure} MPa`;
+            temperatureElement.textContent = `${newTemperature}°C`;
+        }
+
+        // Updating values every 3 seconds
+        setInterval(updateLiveData, 3000);
+
+        // Chart.js Configuration
+        const ctx = document.getElementById('metricsChart').getContext('2d');
+        const chartData = {
+            labels: ['10s ago', '8s ago', '6s ago', '4s ago', '2s ago', 'Now'],
+            datasets: [{
+                label: 'Pressure (MPa)',
+                data: [2.1, 2.3, 2.4, 2.5, 2.4, 2.3],
+                borderColor: 'blue',
+                fill: false
+            }, {
+                label: 'Temperature (°C)',
+                data: [24, 24.2, 24.5, 24.7, 24.6, 24.3],
+                borderColor: 'red',
+                fill: false
+            }]
+        };
+
+        const metricsChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Updating chart data dynamically
+        function updateChart() {
+            chartData.datasets[0].data.shift();
+            chartData.datasets[1].data.shift();
+            chartData.datasets[0].data.push((2.0 + Math.random() * 0.5).toFixed(2));
+            chartData.datasets[1].data.push((24 + Math.random() * 2).toFixed(1));
+            metricsChart.update();
+        }
+
+        setInterval(updateChart, 3000);
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get current page filename
+            let currentPage = window.location.pathname.split("/").pop();
+
+            // Map filenames to their sidebar link IDs
+            let pageMap = {
+                "dashboard.html": "dashboardLink",
+                "testlogs.html": "testlogsLink",
+                "reports.html": "reportsLink",
+                "settings.html": "settingsLink"
+            };
+
+            // Remove active class from all links
+            document.querySelectorAll(".sidebar ul li").forEach(li => li.classList.remove("active"));
+
+            // Add active class to the correct menu item
+            if (pageMap[currentPage]) {
+                document.getElementById(pageMap[currentPage]).classList.add("active");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

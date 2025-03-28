@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Logs Dashboard</title>
+    <link rel="stylesheet" href="test.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>Admin User</h3><br>
+            <ul>
+                <li id="dashboardLink"><a href="dashboard.html">🏠 Dashboard</a></li>
+                <li id="testlogsLink"><a href="testlogs.html">📄 Test Logs</a></li>
+                <li id="reportsLink"><a href="reports.html">📊 Reports</a></li>
+                <li id="settingsLink"><a href="settings.html">⚙️ Settings</a></li>
+            </ul>
+        </div>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h3>Test Logs</h3>
+                <button class="export-btn">⬇ Export Data</button>
+            </header>
+
+            <!-- Filter Section -->
+            <div class="filters-container">
+                <input type="text" id="searchBox" placeholder="🔍 Search by Test ID, Date, or Status">
+                <div class="filter-dropdowns">
+                    <select id="dateRange">
+                        <option value="">Date Range</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                    </select>
+                    <select id="testStatus">
+                        <option value="">Test Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                    <select id="complianceLevel">
+                        <option value="">Compliance Level</option>
+                        <option value="passed">Passed</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+                <button class="apply-filters">Apply Filters</button>
+            </div>
+
+            <div class="table-details-container">
+                <!-- Test Logs Table -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Test ID</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Range</th>
+                                <th>Compliance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="testLogsTable">
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination -->
+                    <div class="pagination-container">
+                        <button class="pagination-btn prev">Previous</button>
+                        <div class="pagination-numbers">
+                            <button class="page-number active">1</button>
+                            <button class="page-number">2</button>
+                            <button class="page-number">3</button>
+                        </div>
+                        <button class="pagination-btn next">Next</button>
+                    </div>
+                </div>
+
+                <aside class="test-details" id="testDetails">
+                    <h3>Test Details <span id="detailTestId">#1234</span></h3><br>
+
+                    <div class="detail-box">
+                        <p>
+                            <strong>Status:</strong>
+                            <span class="status-button status-completed" id="detailStatus">Completed</span><br><br>
+                        <p><strong>Start Time:</strong> <span id="detailStartTime">2025-01-20 09:00</span></p>
+                        <p><strong>End Time:</strong> <span id="detailEndTime">2025-01-20 10:30</span></p>
+                        </p>
+                    </div>
+
+
+                    <div class="detail-box">
+                        <h4>Measurements</h4><br>
+                        <p><strong>Pressure:</strong> <span id="detailPressure">2.4 MPa</span></p>
+                        <p><strong>Temperature:</strong> <span id="detailTemperature">85°C</span></p>
+                    </div>
+
+
+                    <div class="detail-box compliance-list" id="detailCompliance">
+                        <h4>Compliance Report</h4><br>
+                        <p class="compliance-pass">✅ API 7K Compliance</p>
+                        <p class="compliance-pass">✅ API 16C Compliance</p>
+                    </div>
+
+                    <button class="download-btn" onclick="downloadReport()">⬇ Download Report</button>
+                </aside>
+            </div>
+
+            <script>
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    const testLogs = [
+                        { id: 1234, time: "2025-03-15 14:30", status: "Completed", range: "2.4 MPa / 85°C", compliance: "Passed" },
+                        { id: 1233, time: "2025-03-15 13:15", status: "Failed", range: "2.1 MPa / 82°C", compliance: "Failed" }
+                    ];
+
+                    function renderTable() {
+                        const tableBody = document.getElementById("testLogsTable");
+                        tableBody.innerHTML = "";
+
+                        testLogs.forEach((test) => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                <td>${test.id}</td>
+                <td>${test.time}</td>
+                <td><span class="status-badge ${test.status === 'Completed' ? 'status-completed' : 'status-failed'}">${test.status}</span></td>
+                <td>${test.range}</td>
+                <td><span class="compliance-badge ${test.compliance === 'Passed' ? 'compliance-passed' : 'compliance-failed'}">${test.compliance}</span></td>
+            `;
+                            row.addEventListener("click", () => showTestDetails(test));
+                            tableBody.appendChild(row);
+                        });
+                    }
+
+                    function showTestDetails(test) {
+                        document.getElementById("detailStatus").innerText = test.status;
+                        document.getElementById("detailStartTime").innerText = "2025-01-20 09:00";
+                        document.getElementById("detailEndTime").innerText = "2025-01-20 10:30";
+                        document.getElementById("detailPressure").innerText = "2.4 MPa";
+                        document.getElementById("detailTemperature").innerText = "85°C";
+                        document.getElementById("detailCompliance").innerHTML = "<p>✅ API 7K Compliance</p><p>✅ API 16C Compliance</p>";
+                    }
+
+                    renderTable();
+                });
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Get current page filename
+                    let currentPage = window.location.pathname.split("/").pop();
+
+                    // Map filenames to their sidebar link IDs
+                    let pageMap = {
+                        "dashboard.html": "dashboardLink",
+                        "testlogs.html": "testlogsLink",
+                        "reports.html": "reportsLink",
+                        "settings.html": "settingsLink"
+                    };
+
+                    // Remove active class from all links
+                    document.querySelectorAll(".sidebar ul li").forEach(li => li.classList.remove("active"));
+
+                    // Add active class to the correct menu item
+                    if (pageMap[currentPage]) {
+                        document.getElementById(pageMap[currentPage]).classList.add("active");
+                    }
+                });
+
+            </script>
+
+
+
+</body>
+
+</html>

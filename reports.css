@@ -1,0 +1,549 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background: #fff;
+    padding: 20px;
+    height: 100vh;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.sidebar ul li.active {
+    background: hsl(211, 100%, 50%);
+    color: white;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: block;
+}
+
+/* Ensure White Text for Active Links */
+.sidebar ul li.active a {
+    color: white !important;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.export-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Export Buttons */
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: 1.5px solid #ddd;
+    background: white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+/* Hover & Active States */
+.export-btn:hover {
+    background: #f8f8f8;
+    border-color: #bbb;
+}
+
+.export-btn:active {
+    background: #eee;
+}
+
+/* Icon Styling */
+.icon {
+    width: 18px;
+    height: 18px;
+}
+
+
+
+/* Filter Section - Updated */
+.filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.filter-dropdowns {
+    display: flex;
+    gap: 10px;
+}
+
+
+.filters-container input {
+    width: 400px;
+    /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.filter-dropdowns select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.apply-filters {
+    padding: 8px 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.apply-filters:hover {
+    background: #333;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+
+}
+
+.status-passed {
+    background: #E6F6E6;
+    color: #166534;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+.schedule-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 20px;
+}
+
+
+.graph-placeholder {
+    background: #eaeaea;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+}
+
+/* Buttons */
+.download-btn,
+.share-btn {
+    background: black;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Styling the Automated Report Scheduling Section */
+.automated-scheduling {
+    background: #fffefe;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 850px;
+    /* Adjusted width */
+    border: 1px solid #ddd;
+}
+
+/* Dropdown Wrapper */
+.dropdown-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Custom Styling for Dropdown Button */
+.schedule-container select {
+    width: 280px;
+    /* Increased button width */
+    padding: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Custom dropdown arrow */
+.schedule-container select {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="black" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 14px;
+    padding-right: 30px;
+}
+
+
+/* Report Details Styling */
+.report-details {
+    width: 100%;
+    max-width: 350px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    /* Rounded corners */
+    font-size: 14px;
+    border: 1px solid #ddd;
+    /* Light border */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
+}
+
+/* Title Styling */
+.report-details h3,
+.report-details h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Test Summary */
+.test-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.summary-box {
+    flex: 1;
+    min-width: 120px;
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    /* box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); */
+}
+
+.summary-box.full-width {
+    flex-basis: 100%;
+}
+
+/* Compliance Results */
+.compliance-box {
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    /* box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); */
+}
+
+.compliance-box p {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+/* Checkmark Icon */
+.checkmark {
+    color: black;
+    font-size: 16px;
+}
+
+/* Data Trends */
+.data-trends {
+    background: #f8f8f8;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    color: gray;
+    border: 1px solid #ddd;
+    /* box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); */
+}
+
+/* Buttons */
+.report-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.download-btn1,
+.share-btn1 {
+    flex: 1;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.download-btn1 {
+    background: black;
+    color: white;
+    border: none;
+    transition: 0.3s ease-in-out;
+}
+
+.download-btn1:hover {
+    background: #333;
+}
+
+.share-btn1 {
+    background: white;
+    border: 1px solid black;
+    transition: 0.3s ease-in-out;
+}
+
+.share-btn1:hover {
+    background: #f4f4f4;
+}
+
+/* Center Pagination */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Previous and Next Buttons */
+.pagination-btn {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.pagination-btn:hover {
+    background: #f1f1f1;
+}
+
+/* Page Numbers */
+.pagination-numbers {
+    display: flex;
+    gap: 8px;
+}
+
+.page-number {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.page-number.active {
+    background: #f1f1f1;
+    font-weight: bold;
+}
+
+
+
+/* modal css.............................................. */
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content Box */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    text-align: left;
+    position: relative;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Input Fields */
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Checkboxes & Radio Buttons */
+.checkbox-group,
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.checkbox-group label,
+.radio-group label {
+    margin-bottom: 5px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    background: #ccc;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.generate-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.generate-btn:hover {
+    background: #333;
+}
+
+/* Align Start Date & End Date in One Line */
+.date-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.date-inputs label {
+    flex: 1;
+    font-weight: thin;
+}
+
+.date-inputs input {
+    flex: 2;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Ensure checkboxes align to the left */
+.data-inclusion label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Style checkboxes */
+.data-inclusion input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+/* Ensure proper alignment for radio buttons */
+.output-format label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Adjust radio button size */
+.output-format input[type="radio"] {
+    width: 18px;
+    height: 18px;
+}

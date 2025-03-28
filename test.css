@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+
+.sidebar {
+    width: 250px;
+    background: #fff;
+    padding: 20px;
+    height: 100vh;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.sidebar ul li.active {
+    background: hsl(211, 100%, 50%);
+    color: white;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: block;
+
+}
+
+/* Ensure White Text for Active Links */
+.sidebar ul li.active a {
+    color: white !important;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.export-btn,
+.apply-filters,
+.download-btn {
+    padding: 8px 15px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+
+/* Filter Section - Full Width */
+.filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+
+
+.filters-container input {
+    width: 570px;
+    /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.filter-dropdowns {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-dropdowns select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.apply-filters {
+    padding: 10px 15px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.apply-filters:hover {
+    background: #333;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #f4f4f4;
+}
+
+
+.status-badge,
+.compliance-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: center;
+    min-width: 100px;
+}
+
+
+.status-completed,
+.compliance-passed {
+    background-color: #d4f8d4;
+    color: #166534;
+}
+
+/* Red for Failed */
+.status-failed,
+.compliance-failed {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+
+/* Center Pagination */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Previous and Next Buttons */
+.pagination-btn {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.pagination-btn:hover {
+    background: #f1f1f1;
+}
+
+/* Page Numbers */
+.pagination-numbers {
+    display: flex;
+    gap: 8px;
+}
+
+.page-number {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.page-number.active {
+    background: #f1f1f1;
+    font-weight: bold;
+}
+
+
+
+
+
+/* Ensure the table and test details are side-by-side */
+.table-details-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+.table-container {
+    flex: 1;
+    padding-right: 20px;
+}
+
+
+.test-details {
+    width: 300px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Boxed Sections */
+.detail-box {
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.detail-box p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Dynamic Status Colors */
+.status-completed {
+    background-color: #85ec9d;
+}
+
+.status-failed {
+    background-color: #ed283c;
+}
+
+/* Status Button Styling */
+.status-button {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #E6F6E6;
+    color: #166534;
+    border: 1px solid #A3D9A5;
+    cursor: default;
+}
+
+
+/* Compliance Report Styling */
+.compliance-list {
+    padding: 10px;
+    border-radius: 5px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+}
+
+.compliance-pass {
+    color: green;
+    font-weight: bold;
+}
+
+/* Download Button */
+.download-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.download-btn:hover {
+    background: #333;
+}
